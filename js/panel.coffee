@@ -16,7 +16,7 @@ defaultState = {
   alert: "none",
   hue: 14922,
   effect: "none",
-  sat: 144,
+  sat: 60,
   bri: 254,
   on: true
 }
@@ -45,8 +45,8 @@ selectBulb = (elem) ->
 renderBulbs = () ->
   document.getElementById('screen').innerHTML = '';
   data = { "lights" : [] }
-  screen.html(Mark.up(bulbsTpl, lightList))
-  title.text("Bulb Controls")
+  screen.html Mark.up(bulbsTpl, lightList)
+  title.text "Bulb Controls"
 
 renderDashboard = () ->
   document.getElementById('screen').innerHTML = '';
@@ -54,23 +54,23 @@ renderDashboard = () ->
     data = { "lights" : [] }
     $.getJSON "http://" + hueIP + '/api' + hueUser + '/lights', (res) ->
       for k,v of res
-        data.lights.push({ id: k, name: v.name, state: {} })
+        data.lights.push { id: k, name: v.name, state: {} }
       lightList = data
-      screen.html(Mark.up(dashboardTpl, data))
+      screen.html Mark.up(dashboardTpl, data)
   else
-    screen.html(Mark.up(dashboardTpl, lightList))
-  title.text("Hue Control Panel")
+    screen.html Mark.up(dashboardTpl, lightList)
+  title.text "Hue Control Panel"
 
 renderEffects = () ->
   document.getElementById('screen').innerHTML = '';
-  screen.html(Mark.up(effectsTpl, lightList))
-  title.text("Special Effects")
+  screen.html Mark.up(effectsTpl, lightList)
+  title.text "Special Effects"
 
 renderFavorites = () ->
   document.getElementById('screen').innerHTML = '';
   data = { favorites: [] }
-  screen.html(Mark.up(favoritesTpl))
-  title.text("Favorites")
+  screen.html Mark.up(favoritesTpl)
+  title.text "Favorites"
 
 
 # Special Effects
@@ -80,42 +80,60 @@ doEffect = (type) ->
   hue               = Math.floor Math.random() * 65536
 
   if selected_lights.length == all_lights.length
-    if type == "colorloop"
-      doAjaxRequest(0, {effect: "colorloop"}, "group")
+    if type == "cleareffects"
+      doAjaxRequest 0, defaultState, "group"
+    else if type == "colorloop"
+      clBtn = $ '.color-loop'
+      clBtn.toggleClass "is-on"
+      if clBtn.hasClass "is-on"
+        doAjaxRequest 0, {effect: "colorloop"}, "group"
+      else
+        doAjaxRequest 0, {effect: "none"}, "group"
+    else if type == "flash30"
+      doAjaxRequest 0, {alert: "lselect"}, "group"
+    else if type == "flashonce"
+      doAjaxRequest 0, {alert: "select"}, "group"
     else if type == "randomcolor"
-      doAjaxRequest(0, {hue: hue}, "group")
-    else if type == "cleareffects"
-      doAjaxRequest(0, defaultState, "group")
+      doAjaxRequest 0, {hue: hue}, "group"
 
   else
     selected_lights.each ->
       id = $('a', this).data 'id'
-      if type == "colorloop"
-        doAjaxRequest(id, {effect: "colorloop"}, "light")
-      else if type == "randomcolor"
-        doAjaxRequest(id, {hue: hue}, "light")
-      else if type == "cleareffects"
-        doAjaxRequest(id, defaultState, "light")
 
+      if type == "cleareffects"
+        doAjaxRequest id, defaultState, "light"
+      else if type == "colorloop"
+        clBtn = $ '.color-loop'
+        clBtn.toggleClass "is-on"
+        if clBtn.hasClass "is-on"
+          doAjaxRequest id, {effect: "colorloop"}, "light"
+        else
+          doAjaxRequest id, {effect: "none"}, "light"
+      else if type == "flash30"
+        doAjaxRequest id, {alert: "lselect"}, "light"
+      else if type == "flashonce"
+        doAjaxRequest id, {alert: "select"}, "light"
+      else if type == "randomcolor"
+        doAjaxRequest id, {hue: hue}, "light"
 
 # Dashboard Controls
 turnDefault = (id) ->
-  doAjaxRequest(id, defaultState, "light")
+  doAjaxRequest id, defaultState, "light"
 
 turnDefaultAll = () ->
-  doAjaxRequest(0, defaultState, "group")
+  doAjaxRequest 0, defaultState, "group"
 
 turnOff = (id) ->
-  doAjaxRequest(id, {on: false}, "light")
+  doAjaxRequest id, {on: false}, "light"
 
 turnOffAll = () ->
-  doAjaxRequest(0, {on: false}, "group")
+  doAjaxRequest 0, {on: false}, "group"
 
 turnOn = (id) ->
-  doAjaxRequest(id, {on: true}, "light")
+  doAjaxRequest id, {on: true}, "light"
 
 turnOnAll = () ->
-  doAjaxRequest(0, {on: true}, "group")
+  doAjaxRequest 0, {on: true}, "group"
 
 jQuery ->
 
@@ -143,11 +161,11 @@ jQuery ->
 
   # Dashboard Controls
   .on 'click', '.turn-default', ->
-    turnDefault($(this).data('id'))
+    turnDefault $(this).data 'id'
   .on 'click', '.turn-off', ->
-    turnOff($(this).data('id'))
+    turnOff $(this).data 'id'
   .on 'click', '.turn-on', ->
-    turnOn($(this).data('id'))
+    turnOn $(this).data 'id'
   .on 'click', '.all-default', ->
     turnDefaultAll()
   .on 'click', '.all-off', ->
@@ -157,11 +175,15 @@ jQuery ->
 
   # Special Effects
   .on 'click', '.clear-effects', ->
-    doEffect("cleareffects")
+    doEffect 'cleareffects'
   .on 'click', '.color-loop', ->
-    doEffect("colorloop")
+    doEffect 'colorloop'
+  .on 'click', '.flash-30', ->
+    doEffect 'flash30'
+  .on 'click', '.flash-once', ->
+    doEffect 'flashonce'
   .on 'click', '.random-color', ->
-    doEffect("randomcolor")
+    doEffect 'randomcolor'
 
   # Load the Dashboard
   renderDashboard()

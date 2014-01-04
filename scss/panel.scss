@@ -5,6 +5,10 @@ body {
   background:#ddd;
 }
 
+button {
+  outline:none;
+}
+
 header {
   @include linear-gradient(#666, #222);
   height:50px;
@@ -81,6 +85,10 @@ footer {
   }
 
   button.touched {
+    background:#aaa;
+  }
+
+  button.is-on {
     background:#aaa;
   }
 

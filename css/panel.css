@@ -113,6 +113,9 @@ ul, ol {
 body {
   background: #ddd; }
 
+button {
+  outline: none; }
+
 header {
   background-color: #666666;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #666666), color-stop(100%, #222222));
@@ -182,6 +185,8 @@ footer {
     padding: 0.5em;
     width: 100%; }
   #screen button.touched {
+    background: #aaa; }
+  #screen button.is-on {
     background: #aaa; }
   #screen .item {
     background: #fff;
