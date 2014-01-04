@@ -172,6 +172,7 @@ footer {
     -webkit-appearance: none;
     background: #666;
     border: 1px solid #eee;
+    border-radius: 0.25em;
     color: #fff;
     display: block;
     font-size: 100%;
@@ -209,22 +210,22 @@ footer {
   background: #aaa;
   color: #fff; }
 
-#effects .item ul {
+#effects .item ul, #bulbs .item ul {
   margin: 0;
   padding: 0; }
-  #effects .item ul li {
+  #effects .item ul li, #bulbs .item ul li {
     display: inline;
     list-style: none;
     margin: 0;
     padding: 0; }
-    #effects .item ul li a {
+    #effects .item ul li a, #bulbs .item ul li a {
       border-bottom: 1px solid #ccc;
       display: block;
       padding: 0.25em 1em; }
-      #effects .item ul li a i {
+      #effects .item ul li a i, #bulbs .item ul li a i {
         color: #777;
         margin-right: 1em; }
-  #effects .item ul li.on a i {
+  #effects .item ul li.on a i, #bulbs .item ul li.on a i {
     color: #f00; }
-  #effects .item ul li:last-child a {
+  #effects .item ul li:last-child a, #bulbs .item ul li:last-child a {
     border-bottom: none; }

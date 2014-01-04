@@ -49,7 +49,14 @@
 
   <script type="text/template" id="bulbs-tpl">
     <div id="bulbs">
-      <p>Bulbs</p>
+      <div class="item">
+        <h3>Select Bulbs</h3>
+        <ul>
+          {{lights}}
+            <li><a class="bulb-select" data-id="{{id}}"><i class="fa fa-lightbulb-o"></i> {{name}}</a></li>
+          {{/lights}}
+        </ul>
+      </div>
     </div>
   </script>
 

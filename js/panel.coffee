@@ -45,7 +45,7 @@ selectBulb = (elem) ->
 renderBulbs = () ->
   document.getElementById('screen').innerHTML = '';
   data = { "lights" : [] }
-  screen.html(Mark.up(bulbsTpl))
+  screen.html(Mark.up(bulbsTpl, lightList))
   title.text("Bulb Controls")
 
 renderDashboard = () ->
