@@ -22,6 +22,7 @@
       <a class="dashboard"><i class="fa fa-dashboard"></i></a>
       <a class="bulbs"><i class="fa fa-lightbulb-o"></i></a>
       <a class="favorites"><i class="fa fa-star"></i></a>
+      <a class="effects"><i class="fa fa-bolt"></i></a>
     </footer>
   </div>
 
@@ -58,6 +59,21 @@
     </div>
   </script>
 
+  <script type="text/template" id="effects-tpl">
+    <div id="effects">
+      <div class="item">
+        <h3>Select Bulbs</h3>
+        <ul>
+          {{lights}}
+            <li><a class="bulb-select" data-id="{{id}}"><i class="fa fa-lightbulb-o"></i> {{name}}</a></li>
+          {{/lights}}
+        </ul>
+      </div>
+      <button class="random-color">Random Color</button>
+      <button class="color-loop">Color Loop</button>
+      <button class="clear-effects">Clear All Effects</button>
+    </div>
+  </script>
 
   <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
   <script type="text/javascript" src="./js/markup.min.js"></script>
