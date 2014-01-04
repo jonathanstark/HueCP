@@ -168,7 +168,6 @@ footer {
   position: absolute;
   top: 50px;
   width: 100%;
-  z-index: 1;
   -webkit-overflow-scrolling: touch; }
   #screen button {
     appearance: none;

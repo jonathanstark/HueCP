@@ -29,7 +29,6 @@ doAjaxRequest = (id, object, type) ->
     url = "http://" + hueIP + '/api' + hueUser + '/groups/' + id + '/action'
 
   $.ajax url,
-    type: 'GET'
     dataType: 'JSON'
     type: 'PUT'
     data: JSON.stringify object
@@ -99,7 +98,6 @@ doEffect = (type) ->
   else
     selected_lights.each ->
       id = $('a', this).data 'id'
-
       if type == "cleareffects"
         doAjaxRequest id, defaultState, "light"
       else if type == "colorloop"
@@ -137,19 +135,14 @@ turnOnAll = () ->
 
 jQuery ->
 
-  # Setup
   body.on 'click', 'a', (e) ->
     e.preventDefault();
-  .on 'mousedown', 'a, button', ->
+  .on 'touchstart', 'a, button', ->
     $(this).addClass 'touched'
-  .on 'mouseup', 'a, button', ->
+  .on 'touchend', 'a, button', ->
     $(this).removeClass 'touched'
-
-  # General Purpose
   .on 'click', '.bulb-select', ->
     selectBulb(this)
-
-  # Tab Bar
   .on 'click', '.bulbs', ->
     renderBulbs()
   .on 'click', '.dashboard', ->
@@ -158,8 +151,6 @@ jQuery ->
     renderEffects()
   .on 'click', '.favorites', ->
     renderFavorites()
-
-  # Dashboard Controls
   .on 'click', '.turn-default', ->
     turnDefault $(this).data 'id'
   .on 'click', '.turn-off', ->
@@ -172,8 +163,6 @@ jQuery ->
     turnOffAll()
   .on 'click', '.all-on', ->
     turnOnAll()
-
-  # Special Effects
   .on 'click', '.clear-effects', ->
     doEffect 'cleareffects'
   .on 'click', '.color-loop', ->
