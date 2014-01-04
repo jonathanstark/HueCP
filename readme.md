@@ -9,7 +9,7 @@ For now, the app assumes you've already done the whole handshake with the base. 
 
 In the future, I'll automate this process, or I won't, since it's easy and I've already done it.
 
-###Find your Hue Base STation
+###Find your Hue Base Station
 
 First off, you'll need to find the internal network IP for your Hue base station. The easiest way to do this is to navigate to https://www.meethue.com/api/nupnp and grab it.
 
