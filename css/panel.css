@@ -211,7 +211,7 @@ footer {
   padding: 0.25em;
   text-align: center;
   width: 33%; }
-#dashboard .item a:first-child {
+#dashboard .item a:nth-of-type(1) {
   border-left: none; }
 #dashboard .item a.touched {
   background: #aaa;

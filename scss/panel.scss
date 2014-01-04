@@ -124,7 +124,7 @@ footer {
       text-align:center;
       width:33%;
     }
-    a:first-child {
+    a:nth-of-type(1) {
       border-left:none;
     }
     a.touched {
