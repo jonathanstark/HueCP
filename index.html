@@ -21,7 +21,7 @@
     <footer>
       <a class="dashboard"><i class="fa fa-dashboard"></i></a>
       <a class="bulbs"><i class="fa fa-lightbulb-o"></i></a>
-      <a class="bulbs"><i class="fa fa-group"></i></a>
+      <a class="favorites"><i class="fa fa-star"></i></a>
     </footer>
   </div>
 
@@ -45,6 +45,19 @@
       {{/lights}}
     </div>
   </script>
+
+  <script type="text/template" id="bulbs-tpl">
+    <div id="bulbs">
+      <p>Bulbs</p>
+    </div>
+  </script>
+
+  <script type="text/template" id="favorites-tpl">
+    <div id="favorites">
+      <p>Favorites</p>
+    </div>
+  </script>
+
 
   <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
   <script type="text/javascript" src="./js/markup.min.js"></script>

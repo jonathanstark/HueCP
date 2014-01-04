@@ -1,10 +1,14 @@
 hueIP         = "192.168.2.35"
 hueUser       = "kellishaver"
 
+lightList     = null
+
 body          = $ 'body'
 screen        = $ '#screen'
 
 dashboardTpl  = $('#dashboard-tpl').html()
+bulbsTpl      = $('#bulbs-tpl').html()
+favoritesTpl  = $('#favorites-tpl').html()
 
 defaultState = {
   "alert" : "none",
@@ -28,13 +32,27 @@ doAjaxRequest = (id, object, type) ->
     data: JSON.stringify object
     queue: true
 
-renderDashboard = () ->
+renderBulbs = () ->
   document.getElementById('screen').innerHTML = '';
   data = { "lights" : [] }
-  $.getJSON "http://" + hueIP + '/api' + hueUser + '/lights', (res) ->
-    for k,v of res
-      data.lights.push({ "id" : k, "name" : v.name })
-    screen.html(Mark.up(dashboardTpl, data))
+  screen.html(Mark.up(bulbsTpl))
+
+renderDashboard = () ->
+  document.getElementById('screen').innerHTML = '';
+  if lightList == null
+    data = { "lights" : [] }
+    $.getJSON "http://" + hueIP + '/api' + hueUser + '/lights', (res) ->
+      for k,v of res
+        data.lights.push({ "id" : k, "name" : v.name })
+      lightList = data
+      screen.html(Mark.up(dashboardTpl, data))
+  else
+    screen.html(Mark.up(dashboardTpl, lightList))
+
+renderFavorites = () ->
+  document.getElementById('screen').innerHTML = '';
+  data = { "favorites" : [] }
+  screen.html(Mark.up(favoritesTpl))
 
 turnDefault = (id) ->
   doAjaxRequest(id, defaultState, "light")
@@ -65,6 +83,10 @@ jQuery ->
 
   .on 'click', '.dashboard', ->
     renderDashboard()
+  .on 'click', '.bulbs', ->
+    renderBulbs()
+  .on 'click', '.favorites', ->
+    renderFavorites()
 
   .on 'click', '.turn-default', ->
     turnDefault($(this).data('id'))
