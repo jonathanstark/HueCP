@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hue Panel</title>
+  <link rel="stylesheet" href="./css/font-awesome.min.css">
+  <link rel="stylesheet" href="./css/panel.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Hue Control Panel</h1>
+    </header>
+    <div id="screen">
+
+    </div>
+    <footer>
+      <a class="dashboard"><i class="fa fa-dashboard"></i></a>
+      <a class="bulbs"><i class="fa fa-lightbulb-o"></i></a>
+    </footer>
+  </div>
+
+
+  <script type="text/template" id="dashboard-tpl">
+    <div id="dashboard">
+
+      <button class="all-default">All to Default</button>
+      <button class="all-on">All On</button>
+      <button class="all-off">All Off</button>
+
+      <hr>
+
+      {{lights}}
+        <div class="item">
+          <h3>{{name}}</h3>
+          <a href="" class="turn-default" data-id="{{id}}">Default</a>
+          <a href="" class="turn-off"     data-id="{{id}}">Off</a>
+          <a href="" class="turn-on"      data-id="{{id}}">On</a>
+        </div>
+      {{/lights}}
+    </div>
+  </script>
+
+  <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/markup.min.js"></script>
+  <script type="text/javascript" src="./js/panel.js"></script>
+</body>
+</html>

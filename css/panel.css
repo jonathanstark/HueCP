@@ -1,0 +1,211 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+::-moz-selection {
+  background: #ad364b;
+  color: #fff;
+  text-shadow: none; }
+
+::selection {
+  background: #ad364b;
+  color: #fff;
+  text-shadow: none; }
+
+a {
+  color: #777;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+  -o-tap-highlight-color: rgba(0, 0, 0, 0);
+  tap-highlight-color: rgba(0, 0, 0, 0);
+  text-decoration: none; }
+
+a:hover {
+  color: #444; }
+
+.align-center {
+  text-align: center; }
+
+.align-right {
+  text-align: right; }
+
+.align-left {
+  text-align: left; }
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  line-height: 140%;
+  margin: 0;
+  overflow-y: scroll;
+  overflow-scroll: touch;
+  -webkit-overflow-scroll: touch; }
+
+footer, header, nav, section {
+  display: block; }
+
+fieldset, img {
+  border: none; }
+
+form, legend, li {
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25em;
+  margin: 0 0 0.5em 0;
+  padding: 0; }
+
+h1 {
+  font-size: 200%; }
+
+h2 {
+  font-size: 180%; }
+
+h3 {
+  font-size: 160%; }
+
+h4 {
+  font-size: 140%; }
+
+h5 {
+  font-size: 120%; }
+
+h6 {
+  font-size: 100%; }
+
+.hidden {
+  display: none; }
+
+hr {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  height: 0;
+  margin: 1em 0; }
+
+html {
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+i {
+  color: #444; }
+
+input, select, textarea {
+  color: #444;
+  font-family: helvetica, arial, sans-serif; }
+
+p {
+  margin: 0 0 1em 0; }
+
+small {
+  font-size: 70%; }
+
+ul, ol {
+  margin: 0 0 1em 0;
+  padding: 0 0 0 2em; }
+
+body {
+  background: #ddd; }
+
+header {
+  background-color: #666666;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #666666), color-stop(100%, #222222));
+  background-image: -webkit-linear-gradient(#666666, #222222);
+  background-image: linear-gradient(#666666, #222222);
+  height: 50px;
+  left: 0;
+  line-height: 50px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%; }
+  header h1 {
+    color: #fff;
+    font-size: 160%;
+    line-height: 50px; }
+
+footer {
+  background-color: #666666;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #666666), color-stop(100%, #222222));
+  background-image: -webkit-linear-gradient(#666666, #222222);
+  background-image: linear-gradient(#666666, #222222);
+  bottom: 0;
+  height: 50px;
+  left: 0;
+  line-height: 50px;
+  position: absolute;
+  text-align: center;
+  width: 100%; }
+  footer a {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 0.5em;
+    text-align: center;
+    width: 50px; }
+    footer a i {
+      color: #999;
+      font-size: 24px;
+      line-height: 50px; }
+  footer a.touched i {
+    color: #fff; }
+
+#screen {
+  background: #eee;
+  bottom: 50px;
+  left: 0;
+  overflow-y: scroll;
+  padding: 1em;
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  z-index: 1;
+  -webkit-overflow-scrolling: touch; }
+
+#dashboard button {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #666;
+  border: 1px solid #eee;
+  color: #fff;
+  display: block;
+  font-size: 100%;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 1em 0;
+  padding: 0.5em;
+  width: 100%; }
+#dashboard button.touched {
+  background: #aaa; }
+#dashboard div {
+  overflow: hidden; }
+#dashboard .item {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.25em;
+  margin-bottom: 1em; }
+  #dashboard .item h3 {
+    background: #666;
+    color: #fff;
+    font-size: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0.25em; }
+  #dashboard .item a {
+    border-left: 1px solid #ccc;
+    display: block;
+    float: left;
+    padding: 0.25em;
+    text-align: center;
+    width: 33%; }
+  #dashboard .item a:first-child {
+    border-left: none; }
+  #dashboard .item a.touched {
+    background: #aaa;
+    color: #fff; }

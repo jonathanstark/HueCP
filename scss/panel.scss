@@ -1,0 +1,121 @@
+@import 'bourbon';
+@import 'reset';
+
+body {
+  background:#ddd;
+}
+
+header {
+  @include linear-gradient(#666, #222);
+  height:50px;
+  left:0;
+  line-height:50px;
+  position:absolute;
+  text-align:center;
+  top:0;
+  width:100%;
+
+  h1 {
+    color:#fff;
+    font-size:160%;
+    line-height:50px;
+  }
+}
+
+footer {
+  @include linear-gradient(#666, #222);
+  bottom:0;
+  height:50px;
+  left:0;
+  line-height:50px;
+  position:absolute;
+  text-align:center;
+  width:100%;
+
+  a {
+    display:inline-block;
+    height:50px;
+    line-height:50px;
+    margin:0 0.5em;
+    text-align:center;
+    width:50px;
+    i {
+      color:#999;
+      font-size:24px;
+      line-height:50px;
+    }
+  }
+  a.touched {
+    i {
+      color:#fff;
+    }
+  }
+}
+
+#screen {
+  background:#eee;
+  bottom:50px;
+  left:0;
+  overflow-y:scroll;
+  padding:1em;
+  position:absolute;
+  top:50px;
+  width:100%;
+  z-index:1;
+  -webkit-overflow-scrolling:touch;
+}
+
+#dashboard {
+  button {
+    appearance:none;
+    -webkit-appearance:none;
+    background:#666;
+    border:1px solid #eee;
+    color:#fff;
+    display:block;
+    font-size:100%;
+    font-weight:bold;
+    text-align:center;
+    margin:0 0 1em 0;
+    padding:0.5em;
+    width:100%;
+  }
+
+  button.touched {
+    background:#aaa;
+  }
+
+  div {
+    overflow:hidden;
+  }
+
+  .item {
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:0.25em;
+    margin-bottom:1em;
+    h3 {
+      background:#666;
+      color:#fff;
+      font-size:100%;
+      text-align:center;
+      margin:0;
+      padding:0.25em;
+    }
+    a {
+      border-left:1px solid #ccc;
+      display:block;
+      float:left;
+      padding:0.25em;
+      text-align:center;
+      width:33%;
+    }
+    a:first-child {
+      border-left:none;
+    }
+    a.touched {
+      background:#aaa;
+      color:#fff;
+    }
+  }
+}
