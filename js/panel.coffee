@@ -11,12 +11,12 @@ bulbsTpl      = $('#bulbs-tpl').html()
 favoritesTpl  = $('#favorites-tpl').html()
 
 defaultState = {
-  "alert" : "none",
-  "hue" : 14922,
-  "effect" : "none",
-  "sat" : 144,
-  "bri" : 254,
-  "on" : true
+  alert: "none",
+  hue: 14922,
+  effect: "none",
+  sat: 144,
+  bri: 254,
+  on: true
 }
 
 doAjaxRequest = (id, object, type) ->
@@ -43,7 +43,7 @@ renderDashboard = () ->
     data = { "lights" : [] }
     $.getJSON "http://" + hueIP + '/api' + hueUser + '/lights', (res) ->
       for k,v of res
-        data.lights.push({ "id" : k, "name" : v.name })
+        data.lights.push({ id: k, name: v.name, state: {} })
       lightList = data
       screen.html(Mark.up(dashboardTpl, data))
   else
@@ -51,7 +51,7 @@ renderDashboard = () ->
 
 renderFavorites = () ->
   document.getElementById('screen').innerHTML = '';
-  data = { "favorites" : [] }
+  data = { favorites: [] }
   screen.html(Mark.up(favoritesTpl))
 
 turnDefault = (id) ->
@@ -61,16 +61,16 @@ turnDefaultAll = () ->
   doAjaxRequest(0, defaultState, "group")
 
 turnOff = (id) ->
-  doAjaxRequest(id, {"on" : false}, "light")
+  doAjaxRequest(id, {on: false}, "light")
 
 turnOffAll = () ->
-  doAjaxRequest(0, {"on" : false}, "group")
+  doAjaxRequest(0, {on: false}, "group")
 
 turnOn = (id) ->
-  doAjaxRequest(id, {"on" : true}, "light")
+  doAjaxRequest(id, {on: true}, "light")
 
 turnOnAll = () ->
-  doAjaxRequest(0, {"on" : true}, "group")
+  doAjaxRequest(0, {on: true}, "group")
 
 jQuery ->
 
