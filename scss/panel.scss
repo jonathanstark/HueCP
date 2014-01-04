@@ -91,6 +91,11 @@ footer {
     background:#aaa;
   }
 
+  > div {
+    margin:0 auto;
+    max-width:400px;
+  }
+
   .item {
     background:#fff;
     border:1px solid #ccc;
