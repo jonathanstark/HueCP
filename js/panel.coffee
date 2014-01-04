@@ -21,6 +21,7 @@ doAjaxRequest = (id, object) ->
     dataType: 'JSON'
     type: 'PUT'
     data: JSON.stringify object
+    queue: true
 
 renderDashboard = () ->
   document.getElementById('screen').innerHTML = '';
