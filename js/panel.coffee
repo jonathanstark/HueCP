@@ -15,8 +15,13 @@ defaultState = {
   "on" : true
 }
 
-doAjaxRequest = (id, object) ->
-  $.ajax "http://" + hueIP + '/api' + hueUser + '/lights/' + id + '/state',
+doAjaxRequest = (id, object, type) ->
+  if type == "light"
+    url = "http://" + hueIP + '/api' + hueUser + '/lights/' + id + '/state'
+  else if type == "group"
+    url = "http://" + hueIP + '/api' + hueUser + '/groups/' + id + '/action'
+
+  $.ajax url,
     type: 'GET'
     dataType: 'JSON'
     type: 'PUT'
@@ -32,28 +37,22 @@ renderDashboard = () ->
     screen.html(Mark.up(dashboardTpl, data))
 
 turnDefault = (id) ->
-  doAjaxRequest(id, defaultState)
+  doAjaxRequest(id, defaultState, "light")
 
 turnDefaultAll = () ->
-  $.getJSON "http://" + hueIP + '/api' + hueUser + '/lights', (res) ->
-    for k,v of res
-      doAjaxRequest(k, defaultState)
+  doAjaxRequest(0, defaultState, "group")
 
 turnOff = (id) ->
-  doAjaxRequest(id, {"on" : false})
+  doAjaxRequest(id, {"on" : false}, "light")
 
 turnOffAll = () ->
-  $.getJSON "http://" + hueIP + '/api' + hueUser + '/lights', (res) ->
-    for k,v of res
-      doAjaxRequest(k, {"on" : false})
+  doAjaxRequest(0, {"on" : false}, "group")
 
 turnOn = (id) ->
-  doAjaxRequest(id, {"on" : true})
+  doAjaxRequest(id, {"on" : true}, "light")
 
 turnOnAll = () ->
-  $.getJSON "http://" + hueIP + '/api' + hueUser + '/lights', (res) ->
-    for k,v of res
-      doAjaxRequest(k, defaultState)
+  doAjaxRequest(0, {"on" : true}, "group")
 
 jQuery ->
 
