@@ -7,7 +7,7 @@ At the moment, it's pretty basic, but I'll add to it as I have time.
 
 ###Getting Started
 
-It's no longer necessary to manually create the web app user out of band and the script will now prompt you to do this automatically the first time you visit the control panel (thanks, [Jonathan Stark](http://github.com/jonathanstark).
+It's no longer necessary to manually create the web app user out of band and the script will now prompt you to do this automatically the first time you visit the control panel (thanks, [Jonathan Stark](http://github.com/jonathanstark)).
 
 If you want to use the hosted version of HueCP, head on over to [http://huepanel.com](http://huepanel.com) and follow the directions when prompted.
 
