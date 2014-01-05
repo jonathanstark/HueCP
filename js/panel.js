@@ -34,19 +34,26 @@
   timer = false;
 
   createBridgeUser = function() {
-    return $.ajax({
-      url: 'http://' + hueIP + '/api',
-      dataType: 'JSON',
-      type: 'POST',
-      data: '{"devicetype":"huepanel","username":"' + hueUser + '"}',
-      processData: false,
-      success: function(data) {
-        if (!!data[0].error) {
-          return alert('Press the button on your base station and then immediately refresh this page.');
-        } else {
-          localStorage.hueIP = hueIP;
-          return renderDashboard();
-        }
+    return $.getJSON("http://" + hueIP + '/api/' + hueUser + '/lights', function(res) {
+      if (!!res[0]) {
+        return $.ajax({
+          url: 'http://' + hueIP + '/api',
+          dataType: 'JSON',
+          type: 'POST',
+          data: '{"devicetype":"huepanel","username":"' + hueUser + '"}',
+          processData: false,
+          success: function(data) {
+            if (!!data[0].error) {
+              return alert('Press the button on your base station and then immediately refresh this page.');
+            } else {
+              localStorage.hueIP = hueIP;
+              return renderDashboard();
+            }
+          }
+        });
+      } else {
+        localStorage.hueIP = hueIP;
+        return renderDashboard();
       }
     });
   };
