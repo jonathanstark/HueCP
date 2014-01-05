@@ -236,3 +236,9 @@ footer {
     color: #f00; }
   #effects .item ul li:last-child a, #bulbs .item ul li:last-child a {
     border-bottom: none; }
+#effects .hue-range, #effects .brightness-range, #bulbs .hue-range, #bulbs .brightness-range {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%; }

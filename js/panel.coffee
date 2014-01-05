@@ -21,6 +21,8 @@ defaultState = {
   on: true
 }
 
+timer = false
+
 # Initial Setup
 createBridgeUser = () ->
   $.ajax
@@ -201,6 +203,12 @@ jQuery ->
     doEffect 'flashonce'
   .on 'click', '.random-color', ->
     doEffect 'randomcolor'
+  .on 'change', '.hue-range', ->
+    elem = $(this)
+    clearTimeout timer
+    timer = setTimeout () ->
+      console.log elem.val()
+    , 300
 
   # Alons-y!
   init()
