@@ -230,10 +230,12 @@ footer {
       display: block;
       padding: 0.25em 1em; }
       #effects .item ul li a i, #bulbs .item ul li a i {
-        color: #777;
+        color: #ccc;
         margin-right: 1em; }
-  #effects .item ul li.on a i, #bulbs .item ul li.on a i {
-    color: #f00; }
+  #effects .item ul li.on a, #bulbs .item ul li.on a {
+    color: #000; }
+    #effects .item ul li.on a i, #bulbs .item ul li.on a i {
+      color: #f00; }
   #effects .item ul li:last-child a, #bulbs .item ul li:last-child a {
     border-bottom: none; }
 #effects .hue-range, #effects .brightness-range, #effects .saturation-range, #bulbs .hue-range, #bulbs .brightness-range, #bulbs .saturation-range {

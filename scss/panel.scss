@@ -149,13 +149,14 @@ footer {
           display:block;
           padding:0.25em 1em;
           i {
-            color:#777;
+            color:#ccc;
             margin-right:1em;
           }
         }
       }
       li.on {
         a {
+          color:#000;
           i {
             color:#f00;
           }
