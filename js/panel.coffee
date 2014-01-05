@@ -32,7 +32,6 @@ createBridgeUser = () ->
     data: '{"devicetype":"huepanel","username":"' + hueUser + '"}',
     processData : false,
     success: (data) ->
-      console.log(data)
       if !!data[0].error
         alert 'Press the button on your base station and then immediately refresh this page.'
       else

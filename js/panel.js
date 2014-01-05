@@ -41,7 +41,6 @@
       data: '{"devicetype":"huepanel","username":"' + hueUser + '"}',
       processData: false,
       success: function(data) {
-        console.log(data);
         if (!!data[0].error) {
           return alert('Press the button on your base station and then immediately refresh this page.');
         } else {
