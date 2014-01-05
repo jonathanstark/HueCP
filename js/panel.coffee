@@ -163,6 +163,21 @@ turnOn = (id) ->
 turnOnAll = () ->
   doAjaxRequest 0, {on: true}, "group"
 
+# Bulb Controls
+adjustHue = () ->
+  elem = $ '.hue-range'
+  clearTimeout timer
+  timer = setTimeout () ->
+    console.log elem.val()
+  , 300
+
+adjustBrightness = () ->
+  elem = $ '.brightness-range'
+  clearTimeout timer
+  timer = setTimeout () ->
+    console.log elem.val()
+  , 300
+
 jQuery ->
 
   body.on 'click', 'a', (e) ->
@@ -204,11 +219,9 @@ jQuery ->
   .on 'click', '.random-color', ->
     doEffect 'randomcolor'
   .on 'change', '.hue-range', ->
-    elem = $(this)
-    clearTimeout timer
-    timer = setTimeout () ->
-      console.log elem.val()
-    , 300
+    adjustHue()
+  .on 'change', '.brightness-range', ->
+    adjustBrightness()
 
   # Alons-y!
   init()
