@@ -111,6 +111,7 @@ doEffect = (type) ->
   all_lights        = $ '.bulb-select'
   selected_lights   = $ 'li.on'
   hue               = Math.floor Math.random() * 65536
+  sat               = Math.floor Math.random() * 255
 
   if selected_lights.length == all_lights.length
     if type == "cleareffects"
@@ -127,7 +128,7 @@ doEffect = (type) ->
     else if type == "flashonce"
       doAjaxRequest 0, {alert: "select"}, "group"
     else if type == "randomcolor"
-      doAjaxRequest 0, {hue: hue}, "group"
+      doAjaxRequest 0, {hue: hue, sat: sat}, "group"
 
   else
     selected_lights.each ->
@@ -146,7 +147,7 @@ doEffect = (type) ->
       else if type == "flashonce"
         doAjaxRequest id, {alert: "select"}, "light"
       else if type == "randomcolor"
-        doAjaxRequest id, {hue: hue}, "light"
+        doAjaxRequest id, {hue: hue, sat: sat}, "light"
 
 # Dashboard Controls
 turnDefault = (id) ->

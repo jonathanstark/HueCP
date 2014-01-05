@@ -144,10 +144,11 @@
   };
 
   doEffect = function(type) {
-    var all_lights, clBtn, hue, selected_lights;
+    var all_lights, clBtn, hue, sat, selected_lights;
     all_lights = $('.bulb-select');
     selected_lights = $('li.on');
     hue = Math.floor(Math.random() * 65536);
+    sat = Math.floor(Math.random() * 255);
     if (selected_lights.length === all_lights.length) {
       if (type === "cleareffects") {
         return doAjaxRequest(0, defaultState, "group");
@@ -173,7 +174,8 @@
         }, "group");
       } else if (type === "randomcolor") {
         return doAjaxRequest(0, {
-          hue: hue
+          hue: hue,
+          sat: sat
         }, "group");
       }
     } else {
@@ -204,7 +206,8 @@
           }, "light");
         } else if (type === "randomcolor") {
           return doAjaxRequest(id, {
-            hue: hue
+            hue: hue,
+            sat: sat
           }, "light");
         }
       });
