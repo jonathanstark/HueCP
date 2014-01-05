@@ -2,9 +2,9 @@
 (function() {
   var body, bulbsTpl, dashboardTpl, defaultState, doAjaxRequest, doEffect, effectsTpl, favoritesTpl, hueIP, hueUser, lightList, renderBulbs, renderDashboard, renderEffects, renderFavorites, screen, selectBulb, title, turnDefault, turnDefaultAll, turnOff, turnOffAll, turnOn, turnOnAll;
 
-  hueIP = "192.168.2.32";
+  hueIP = null;
 
-  hueUser = "kellishaver";
+  hueUser = "hueconsole";
 
   lightList = null;
 
@@ -30,6 +30,7 @@
     bri: 254,
     on: true
   };
+
 
   doAjaxRequest = function(id, object, type) {
     var url;
@@ -204,6 +205,20 @@
     }, "group");
   };
 
+  init = function() {
+    if (localStorage.hueIP == undefined) {
+      $.getJSON('https://www.meethue.com/api/nupnp', function(data){
+        // console.dir(data);
+        hueIP = data[0].internalipaddress;
+        localStorage.hueIP = hueIP;
+        renderDashboard();
+      });
+    } else {
+      hueIP = localStorage.hueIP;
+      renderDashboard();
+    }
+  }
+
   jQuery(function() {
     body.on('click', 'a', function(e) {
       return e.preventDefault();
@@ -244,7 +259,7 @@
     }).on('click', '.random-color', function() {
       return doEffect('randomcolor');
     });
-    return renderDashboard();
+    return init();
   });
 
 }).call(this);
