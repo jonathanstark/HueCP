@@ -4,7 +4,7 @@
 
   hueIP = null;
 
-  hueUser = "hueconsole";
+  hueUser = 'huepaneluser';
 
   lightList = null;
 
@@ -205,14 +205,32 @@
     }, "group");
   };
 
+  createBridgeUser = function() {
+    $.ajax({
+      url: 'http://'+hueIP+'/api',
+      type: 'POST',
+      data: '{"devicetype":"huepanel","username":"'+hueUser+'"}',
+      processData : false,
+      success: function(data) {
+        if(!!data[0].error) {
+          alert('Press the button on your base station and then immediately refresh this page.');
+        } else {
+          renderDashboard();
+        }
+      }
+    });
+  }
+
   init = function() {
     if (localStorage.hueIP == undefined) {
-      $.getJSON('https://www.meethue.com/api/nupnp', function(data){
+      // Get the IP of the bridge from the hue bridge API
+      $.getJSON('http://www.meethue.com/api/nupnp', function(data){
         // TODO: Create UI to clear stored IP address
         // TODO: Create UI to select from multiple bridges
+        // TODO: Move createBridgeUser logic to ajax error handlers instead of on first init
         hueIP = data[0].internalipaddress;
         localStorage.hueIP = hueIP;
-        renderDashboard();
+        createBridgeUser();
       });
     } else {
       hueIP = localStorage.hueIP;
