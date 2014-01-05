@@ -21,6 +21,33 @@ defaultState = {
   on: true
 }
 
+# Initial Setup
+createBridgeUser = () ->
+  $.ajax
+    url: 'http://' + hueIP + '/api',
+    type: 'POST',
+    data: '{"devicetype":"huepanel","username":"' + hueUser + '"}',
+    processData : false,
+    success: (data) ->
+      if !!data[0].error
+        alert 'Press the button on your base station and then immediately refresh this page.'
+      else
+        renderDashboard();
+
+init = () ->
+  if localStorage.hueIP == undefined
+    # Get the IP of the bridge from the hue bridge API
+    $.getJSON 'http://www.meethue.com/api/nupnp', (data) ->
+      # TODO: Create UI to clear stored IP address
+      # TODO: Create UI to select from multiple bridges
+      # TODO: Move createBridgeUser logic to ajax error handlers instead of on first init
+      hueIP = data[0].internalipaddress
+      localStorage.hueIP = hueIP
+      createBridgeUser()
+  else
+    hueIP = localStorage.hueIP
+    renderDashboard()
+
 # AJAX request to control a light or group.
 doAjaxRequest = (id, object, type) ->
   if type == "light"
@@ -33,7 +60,6 @@ doAjaxRequest = (id, object, type) ->
     type: 'PUT'
     data: JSON.stringify object
     queue: true
-
 
 # General Purpose
 selectBulb = (elem) ->
@@ -51,7 +77,7 @@ renderDashboard = () ->
   document.getElementById('screen').innerHTML = '';
   if lightList == null
     data = { "lights" : [] }
-    $.getJSON "http://" + hueIP + '/api' + hueUser + '/lights', (res) ->
+    $.getJSON "http://" + hueIP + '/api/' + hueUser + '/lights', (res) ->
       for k,v of res
         data.lights.push { id: k, name: v.name, state: {} }
       lightList = data
@@ -174,5 +200,5 @@ jQuery ->
   .on 'click', '.random-color', ->
     doEffect 'randomcolor'
 
-  # Load the Dashboard
-  renderDashboard()
+  # Alons-y!
+  init()
