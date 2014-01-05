@@ -217,6 +217,20 @@ footer {
   background: #aaa;
   color: #fff; }
 
+#effects h3, #bulbs h3 {
+  padding-left: 4em;
+  padding-right: 4em;
+  position: relative; }
+  #effects h3 a, #bulbs h3 a {
+    display: inline-block;
+    padding: 0 0 0 1em;
+    position: absolute;
+    top: 4px;
+    left: 0; }
+    #effects h3 a i, #bulbs h3 a i {
+      color: #aaa; }
+  #effects h3 a.on i, #bulbs h3 a.on i {
+    color: #fff; }
 #effects .item ul, #bulbs .item ul {
   margin: 0;
   padding: 0; }

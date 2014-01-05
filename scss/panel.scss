@@ -135,6 +135,26 @@ footer {
 }
 
 #effects, #bulbs {
+  h3 {
+    padding-left:4em;
+    padding-right:4em;
+    position:relative;
+    a {
+      display:inline-block;
+      padding:0 0 0 1em;
+      position:absolute;
+      top:4px;
+      left:0;
+      i {
+        color:#aaa;
+      }
+    }
+    a.on {
+      i {
+        color:#fff;
+      }
+    }
+  }
   .item {
     ul {
       margin:0;

@@ -74,6 +74,16 @@ selectBulb = (elem) ->
   item = $ elem
   item.parent().toggleClass "on"
 
+toggleBulbSelections = () ->
+  elem = $ '.toggle-select'
+  elem.toggleClass 'on'
+  if elem.hasClass 'on'
+    lclass = 'on'
+  else
+    lclass = 'off'
+  $('li').each ->
+    $(this).attr 'class', lclass
+
 # Render the screens
 renderBulbs = () ->
   document.getElementById('screen').innerHTML = '';
@@ -227,6 +237,8 @@ jQuery ->
     $(this).removeClass 'touched'
   .on 'click', '.bulb-select', ->
     selectBulb(this)
+  .on 'click', '.toggle-select', ->
+    toggleBulbSelections()
   .on 'click', '.bulbs', ->
     renderBulbs()
   .on 'click', '.dashboard', ->
