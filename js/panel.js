@@ -2,9 +2,9 @@
 (function() {
   var body, bulbsTpl, dashboardTpl, defaultState, doAjaxRequest, doEffect, effectsTpl, favoritesTpl, hueIP, hueUser, lightList, renderBulbs, renderDashboard, renderEffects, renderFavorites, screen, selectBulb, title, turnDefault, turnDefaultAll, turnOff, turnOffAll, turnOn, turnOnAll;
 
-  hueIP = "192.168.2.32";
+  hueIP = null;
 
-  hueUser = "kellishaver";
+  hueUser = 'huepaneluser';
 
   lightList = null;
 
@@ -30,6 +30,7 @@
     bri: 254,
     on: true
   };
+
 
   doAjaxRequest = function(id, object, type) {
     var url;
@@ -69,7 +70,7 @@
       data = {
         "lights": []
       };
-      $.getJSON("http://" + hueIP + '/api' + hueUser + '/lights', function(res) {
+      $.getJSON("http://" + hueIP + '/api/' + hueUser + '/lights', function(res) {
         var k, v;
         for (k in res) {
           v = res[k];
@@ -85,7 +86,7 @@
     } else {
       screen.html(Mark.up(dashboardTpl, lightList));
     }
-    return title.text("Hue Control Panel");
+    return title.text("HuePanel");
   };
 
   renderEffects = function() {
@@ -204,6 +205,39 @@
     }, "group");
   };
 
+  createBridgeUser = function() {
+    $.ajax({
+      url: 'http://'+hueIP+'/api',
+      type: 'POST',
+      data: '{"devicetype":"huepanel","username":"'+hueUser+'"}',
+      processData : false,
+      success: function(data) {
+        if(!!data[0].error) {
+          alert('Press the button on your base station and then immediately refresh this page.');
+        } else {
+          renderDashboard();
+        }
+      }
+    });
+  }
+
+  init = function() {
+    if (localStorage.hueIP == undefined) {
+      // Get the IP of the bridge from the hue bridge API
+      $.getJSON('http://www.meethue.com/api/nupnp', function(data){
+        // TODO: Create UI to clear stored IP address
+        // TODO: Create UI to select from multiple bridges
+        // TODO: Move createBridgeUser logic to ajax error handlers instead of on first init
+        hueIP = data[0].internalipaddress;
+        localStorage.hueIP = hueIP;
+        createBridgeUser();
+      });
+    } else {
+      hueIP = localStorage.hueIP;
+      renderDashboard();
+    }
+  }
+
   jQuery(function() {
     body.on('click', 'a', function(e) {
       return e.preventDefault();
@@ -244,7 +278,7 @@
     }).on('click', '.random-color', function() {
       return doEffect('randomcolor');
     });
-    return renderDashboard();
+    return init();
   });
 
 }).call(this);
