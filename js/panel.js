@@ -208,7 +208,8 @@
   init = function() {
     if (localStorage.hueIP == undefined) {
       $.getJSON('https://www.meethue.com/api/nupnp', function(data){
-        // console.dir(data);
+        // TODO: Create UI to clear stored IP address
+        // TODO: Create UI to select from multiple bridges
         hueIP = data[0].internalipaddress;
         localStorage.hueIP = hueIP;
         renderDashboard();
