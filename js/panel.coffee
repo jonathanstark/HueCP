@@ -164,18 +164,52 @@ turnOnAll = () ->
   doAjaxRequest 0, {on: true}, "group"
 
 # Bulb Controls
-adjustHue = () ->
-  elem = $ '.hue-range'
+adjustBrightness = () ->
+  all_lights        = $ '.bulb-select'
+  selected_lights   = $ 'li.on'
+  elem              = $ '.brightness-range'
+
   clearTimeout timer
   timer = setTimeout () ->
-    console.log elem.val()
+    value = parseFloat elem.val()
+    if selected_lights.length == all_lights.length
+      doAjaxRequest 0, {bri: value}, "group"
+    else
+      selected_lights.each ->
+        id = $('a', this).data 'id'
+        doAjaxRequest id, {bri: value}, "light"
   , 300
 
-adjustBrightness = () ->
-  elem = $ '.brightness-range'
+adjustHue = () ->
+  all_lights        = $ '.bulb-select'
+  selected_lights   = $ 'li.on'
+  elem              = $ '.hue-range'
+
   clearTimeout timer
   timer = setTimeout () ->
-    console.log elem.val()
+    value = parseFloat elem.val()
+    if selected_lights.length == all_lights.length
+      doAjaxRequest 0, {hue: value}, "group"
+    else
+      selected_lights.each ->
+        id = $('a', this).data 'id'
+        doAjaxRequest id, {hue: value}, "light"
+  , 300
+
+adjustSaturation = () ->
+  all_lights        = $ '.bulb-select'
+  selected_lights   = $ 'li.on'
+  elem              = $ '.saturation-range'
+
+  clearTimeout timer
+  timer = setTimeout () ->
+    value = parseFloat elem.val()
+    if selected_lights.length == all_lights.length
+      doAjaxRequest 0, {sat: value}, "group"
+    else
+      selected_lights.each ->
+        id = $('a', this).data 'id'
+        doAjaxRequest id, {sat: value}, "light"
   , 300
 
 jQuery ->
@@ -218,10 +252,12 @@ jQuery ->
     doEffect 'flashonce'
   .on 'click', '.random-color', ->
     doEffect 'randomcolor'
-  .on 'change', '.hue-range', ->
-    adjustHue()
   .on 'change', '.brightness-range', ->
     adjustBrightness()
+  .on 'change', '.hue-range', ->
+    adjustHue()
+  .on 'change', '.saturation-range', ->
+    adjustSaturation()
 
   # Alons-y!
   init()
