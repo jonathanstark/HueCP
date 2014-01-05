@@ -35,9 +35,9 @@
   doAjaxRequest = function(id, object, type) {
     var url;
     if (type === "light") {
-      url = "http://" + hueIP + '/api' + hueUser + '/lights/' + id + '/state';
+      url = "http://" + hueIP + '/api/' + hueUser + '/lights/' + id + '/state';
     } else if (type === "group") {
-      url = "http://" + hueIP + '/api' + hueUser + '/groups/' + id + '/action';
+      url = "http://" + hueIP + '/api/' + hueUser + '/groups/' + id + '/action';
     }
     return $.ajax(url, {
       dataType: 'JSON',
@@ -70,7 +70,7 @@
       data = {
         "lights": []
       };
-      $.getJSON("http://" + hueIP + '/api' + hueUser + '/lights', function(res) {
+      $.getJSON("http://" + hueIP + '/api/' + hueUser + '/lights', function(res) {
         var k, v;
         for (k in res) {
           v = res[k];
@@ -86,7 +86,7 @@
     } else {
       screen.html(Mark.up(dashboardTpl, lightList));
     }
-    return title.text("Hue Control Panel");
+    return title.text("HuePanel");
   };
 
   renderEffects = function() {
