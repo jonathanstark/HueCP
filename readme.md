@@ -13,3 +13,4 @@ If you want to use the hosted version of HueCP, head on over to [http://huepanel
 
 If you're downloading and trying out the code here, simply set it up on your web server (local or remote) and point your browser at it, then follow the directions when prompted.
 
+**Note:** You still need to browse to the control panel from a device that's connected to your local network in order for the app to communicate with the Hue base station, even if the code is hosted elsewhere.
