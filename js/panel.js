@@ -2,9 +2,9 @@
 (function() {
   var body, bulbsTpl, createBridgeUser, dashboardTpl, defaultState, doAjaxRequest, doEffect, effectsTpl, favoritesTpl, hueIP, hueUser, init, lightList, renderBulbs, renderDashboard, renderEffects, renderFavorites, screen, selectBulb, title, turnDefault, turnDefaultAll, turnOff, turnOffAll, turnOn, turnOnAll;
 
-  hueIP = "192.168.2.32";
+  hueIP = null;
 
-  hueUser = "kellishaver";
+  hueUser = "huepaneluser";
 
   lightList = null;
 

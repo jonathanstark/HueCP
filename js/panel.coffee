@@ -1,5 +1,5 @@
-hueIP         = "192.168.2.32"
-hueUser       = "kellishaver"
+hueIP         = null
+hueUser       = "huepaneluser"
 
 lightList     = null
 
