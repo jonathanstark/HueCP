@@ -25,13 +25,16 @@ defaultState = {
 createBridgeUser = () ->
   $.ajax
     url: 'http://' + hueIP + '/api',
+    dataType: 'JSON',
     type: 'POST',
     data: '{"devicetype":"huepanel","username":"' + hueUser + '"}',
     processData : false,
     success: (data) ->
+      console.log(data)
       if !!data[0].error
         alert 'Press the button on your base station and then immediately refresh this page.'
       else
+        localStorage.hueIP = hueIP
         renderDashboard();
 
 init = () ->
@@ -42,7 +45,6 @@ init = () ->
       # TODO: Create UI to select from multiple bridges
       # TODO: Move createBridgeUser logic to ajax error handlers instead of on first init
       hueIP = data[0].internalipaddress
-      localStorage.hueIP = hueIP
       createBridgeUser()
   else
     hueIP = localStorage.hueIP

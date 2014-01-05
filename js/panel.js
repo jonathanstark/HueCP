@@ -34,13 +34,16 @@
   createBridgeUser = function() {
     return $.ajax({
       url: 'http://' + hueIP + '/api',
+      dataType: 'JSON',
       type: 'POST',
       data: '{"devicetype":"huepanel","username":"' + hueUser + '"}',
       processData: false,
       success: function(data) {
+        console.log(data);
         if (!!data[0].error) {
           return alert('Press the button on your base station and then immediately refresh this page.');
         } else {
+          localStorage.hueIP = hueIP;
           return renderDashboard();
         }
       }
@@ -51,7 +54,6 @@
     if (localStorage.hueIP === void 0) {
       return $.getJSON('http://www.meethue.com/api/nupnp', function(data) {
         hueIP = data[0].internalipaddress;
-        localStorage.hueIP = hueIP;
         return createBridgeUser();
       });
     } else {
