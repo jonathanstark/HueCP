@@ -130,53 +130,53 @@ doEffect = (type) ->
       clBtn = $ '.color-loop'
       clBtn.toggleClass "is-on"
       if clBtn.hasClass "is-on"
-        doAjaxRequest 0, {effect: "colorloop"}, "group"
+        doAjaxRequest(0, {effect: "colorloop"}, "group")
       else
-        doAjaxRequest 0, {effect: "none"}, "group"
+        doAjaxRequest(0, {effect: "none"}, "group")
     else if type == "flash30"
-      doAjaxRequest 0, {alert: "lselect"}, "group"
+      doAjaxRequest(0, {alert: "lselect"}, "group")
     else if type == "flashonce"
-      doAjaxRequest 0, {alert: "select"}, "group"
+      doAjaxRequest(0, {alert: "select"}, "group")
     else if type == "randomcolor"
-      doAjaxRequest 0, {hue: hue, sat: sat}, "group"
+      doAjaxRequest(0, {hue: hue, sat: sat}, "group")
 
   else
     selected_lights.each ->
       id = $('a', this).data 'id'
       if type == "cleareffects"
-        doAjaxRequest id, defaultState, "light"
+        doAjaxRequest(id, defaultState, "light")
       else if type == "colorloop"
         clBtn = $ '.color-loop'
         clBtn.toggleClass "is-on"
         if clBtn.hasClass "is-on"
-          doAjaxRequest id, {effect: "colorloop"}, "light"
+          doAjaxRequest(id, {effect: "colorloop"}, "light")
         else
-          doAjaxRequest id, {effect: "none"}, "light"
+          doAjaxRequest(id, {effect: "none"}, "light")
       else if type == "flash30"
-        doAjaxRequest id, {alert: "lselect"}, "light"
+        doAjaxRequest(id, {alert: "lselect"}, "light")
       else if type == "flashonce"
-        doAjaxRequest id, {alert: "select"}, "light"
+        doAjaxRequest(id, {alert: "select"}, "light")
       else if type == "randomcolor"
-        doAjaxRequest id, {hue: hue, sat: sat}, "light"
+        doAjaxRequest(id, {hue: hue, sat: sat}, "light")
 
 # Dashboard Controls
 turnDefault = (id) ->
-  doAjaxRequest id, defaultState, "light"
+  doAjaxRequest(id, defaultState, "light")
 
 turnDefaultAll = () ->
-  doAjaxRequest 0, defaultState, "group"
+  doAjaxRequest(0, defaultState, "group")
 
 turnOff = (id) ->
-  doAjaxRequest id, {on: false}, "light"
+  doAjaxRequest(id, {on: false}, "light")
 
 turnOffAll = () ->
-  doAjaxRequest 0, {on: false}, "group"
+  doAjaxRequest(0, {on: false}, "group")
 
 turnOn = (id) ->
-  doAjaxRequest id, {on: true}, "light"
+  doAjaxRequest(id, {on: true}, "light")
 
 turnOnAll = () ->
-  doAjaxRequest 0, {on: true}, "group"
+  doAjaxRequest(0, {on: true}, "group")
 
 # Bulb Controls
 adjustBrightness = () ->
@@ -188,11 +188,11 @@ adjustBrightness = () ->
   timer = setTimeout () ->
     value = parseFloat elem.val()
     if selected_lights.length == all_lights.length
-      doAjaxRequest 0, {bri: value}, "group"
+      doAjaxRequest(0, {bri: value}, "group")
     else
       selected_lights.each ->
         id = $('a', this).data 'id'
-        doAjaxRequest id, {bri: value}, "light"
+        doAjaxRequest(id, {bri: value}, "light")
   , 300
 
 adjustHue = () ->
@@ -204,11 +204,11 @@ adjustHue = () ->
   timer = setTimeout () ->
     value = parseFloat elem.val()
     if selected_lights.length == all_lights.length
-      doAjaxRequest 0, {hue: value}, "group"
+      doAjaxRequest(0, {hue: value}, "group")
     else
       selected_lights.each ->
         id = $('a', this).data 'id'
-        doAjaxRequest id, {hue: value}, "light"
+        doAjaxRequest(id, {hue: value}, "light")
   , 300
 
 adjustSaturation = () ->
@@ -220,11 +220,11 @@ adjustSaturation = () ->
   timer = setTimeout () ->
     value = parseFloat elem.val()
     if selected_lights.length == all_lights.length
-      doAjaxRequest 0, {sat: value}, "group"
+      doAjaxRequest(0, {sat: value}, "group")
     else
       selected_lights.each ->
         id = $('a', this).data 'id'
-        doAjaxRequest id, {sat: value}, "light"
+        doAjaxRequest(id, {sat: value}, "light")
   , 300
 
 jQuery ->

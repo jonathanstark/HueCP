@@ -255,7 +255,10 @@ footer {
     #effects .item ul li:last-child a, #bulbs .item ul li:last-child a {
       border-bottom: none; }
   #effects .item img, #bulbs .item img {
-    display: block; }
+    border-radius: 0.25em;
+    display: block;
+    margin: 0.3em auto 0 auto;
+    width: 95%; }
   #effects .item input[type=range], #bulbs .item input[type=range] {
     -webkit-appearance: none !important;
     -webkit-border-radius: .5em;

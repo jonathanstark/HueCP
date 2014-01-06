@@ -190,7 +190,10 @@ footer {
       }
     }
     img {
+      border-radius:0.25em;
       display:block;
+      margin:0.3em auto 0 auto;
+      width:95%;
     }
     input[type=range] {
       -webkit-appearance: none !important;
