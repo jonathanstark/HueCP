@@ -231,30 +231,45 @@ footer {
       color: #aaa; }
   #effects h3 a.on i, #bulbs h3 a.on i {
     color: #fff; }
-#effects .item ul, #bulbs .item ul {
-  margin: 0;
-  padding: 0; }
-  #effects .item ul li, #bulbs .item ul li {
-    display: inline;
-    list-style: none;
+#effects .item, #bulbs .item {
+  text-align: center; }
+  #effects .item ul, #bulbs .item ul {
     margin: 0;
     padding: 0; }
-    #effects .item ul li a, #bulbs .item ul li a {
-      border-bottom: 1px solid #ccc;
-      display: block;
-      padding: 0.25em 1em; }
-      #effects .item ul li a i, #bulbs .item ul li a i {
-        color: #ccc;
-        margin-right: 1em; }
-  #effects .item ul li.on a, #bulbs .item ul li.on a {
-    color: #000; }
-    #effects .item ul li.on a i, #bulbs .item ul li.on a i {
-      color: #f00; }
-  #effects .item ul li:last-child a, #bulbs .item ul li:last-child a {
-    border-bottom: none; }
-#effects .hue-range, #effects .brightness-range, #effects .saturation-range, #bulbs .hue-range, #bulbs .brightness-range, #bulbs .saturation-range {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
-  width: 100%; }
+    #effects .item ul li, #bulbs .item ul li {
+      display: inline;
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+      #effects .item ul li a, #bulbs .item ul li a {
+        border-bottom: 1px solid #ccc;
+        display: block;
+        padding: 0.25em 1em; }
+        #effects .item ul li a i, #bulbs .item ul li a i {
+          color: #ccc;
+          margin-right: 1em; }
+    #effects .item ul li.on a, #bulbs .item ul li.on a {
+      color: #000; }
+      #effects .item ul li.on a i, #bulbs .item ul li.on a i {
+        color: #f00; }
+    #effects .item ul li:last-child a, #bulbs .item ul li:last-child a {
+      border-bottom: none; }
+  #effects .item img, #bulbs .item img {
+    display: block; }
+  #effects .item input[type=range], #bulbs .item input[type=range] {
+    -webkit-appearance: none !important;
+    -webkit-border-radius: .5em;
+    -webkit-box-shadow: inset 0 0 5px #333;
+    background-color: #999;
+    display: inline-block;
+    height: 3em;
+    margin: .5em;
+    width: 95%; }
+  #effects .item input[type='range']::-webkit-slider-thumb, #bulbs .item input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    -webkit-border-radius: .5em;
+    background-color: #AAA;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#aaaaaa));
+    border: 1px solid #666;
+    height: 3em;
+    width: 3em; }
