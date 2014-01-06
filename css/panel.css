@@ -255,7 +255,7 @@ footer {
     #effects .item ul li:last-child a, #bulbs .item ul li:last-child a {
       border-bottom: none; }
   #effects .item img, #bulbs .item img {
-    border-radius: 0.25em;
+    border-radiu: 0.25em;
     display: block;
     margin: 0.3em auto 0 auto;
     width: 95%; }
